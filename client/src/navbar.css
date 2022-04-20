@@ -1,0 +1,26 @@
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: rgb(6, 0, 27);
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-right div {
+  margin-right: 50px;
+}
+
+.logo {
+  width: 100px;
+}
+
+.a {
+  color: white;
+  font-size: 30px;
+  font-family: 'Akshar', sans-serif;
+  text-decoration: none;
+}

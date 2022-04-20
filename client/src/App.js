@@ -3,6 +3,8 @@ import FullCalendar, { formatDate } from '@fullcalendar/react'; // must go befor
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
 
+import Navbar from './Navbar';
+
 /* --- CAN ACCESS SOME FORMATTING DIRECTLY FROM FULLCALENDAR INSTEAD OF INSTALLING OTHER PACKAGES --- */
 /*
 import { formatDate } from '@fullcalendar/react';
@@ -52,10 +54,7 @@ function App() {
 
 	return (
 		<>
-			<img
-				src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.nickoshiro.com%2F&psig=AOvVaw2Mg39bSnmC4EX21XNmd5Za&ust=1650562246352000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLD7i9mVo_cCFQAAAAAdAAAAABAJ'
-				alt=''
-			/>
+			<Navbar />
 			<div className='calendar'>
 				<FullCalendar
 					plugins={[dayGridPlugin, interactionPlugin]}
