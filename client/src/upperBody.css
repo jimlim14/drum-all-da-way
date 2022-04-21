@@ -1,0 +1,36 @@
+#upper-body {
+  height: 600px;
+  position: relative;
+  background-image: linear-gradient(90deg, rgba(2,0,36,0.5) 0%, rgba(7,17,88,0.5) 14%, rgba(195,195,195,0.5) 100%), url('./images/upper-body-background.jpg');
+  background-size: cover;
+}
+
+.upper-body-text-div {
+  width: 35%;
+  padding-top: 100px;
+  padding-left: 200px;
+}
+
+/* .upper-body-background-div {
+}
+
+.upper-body-background-img {
+  background: rgb(2,0,36);
+  opacity: 0.5;
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+  z-index: -1;
+} */
+
+.upper-body-h1 {
+  color: rgb(255, 255, 255);
+  font-size: 48px;
+  font-family: 'Anek Gujarati', sans-serif;
+}
+
+.upper-body-p {
+  color: lightgray;
+  font-size: 25px;
+  font-family: 'Anek Gujarati', sans-serif;
+}

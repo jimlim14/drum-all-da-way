@@ -4,6 +4,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
 
 import Navbar from './Navbar';
+import UpperBody from './UpperBody';
+import MiddleBody from './MiddleBody';
 
 /* --- CAN ACCESS SOME FORMATTING DIRECTLY FROM FULLCALENDAR INSTEAD OF INSTALLING OTHER PACKAGES --- */
 /*
@@ -55,8 +57,10 @@ function App() {
 	return (
 		<>
 			<Navbar />
+			<UpperBody />
+			<MiddleBody />
 			<div className='calendar'>
-				<FullCalendar
+				{/* <FullCalendar
 					plugins={[dayGridPlugin, interactionPlugin]}
 					initialView='dayGridMonth' // 'dayGridWeek' another example
 					//weekends={false} //take out weekends (only monday - friday)
@@ -70,7 +74,7 @@ function App() {
 						{ title: 'me birthday', date: '2022-04-14' },
 						{ title: 'jie jie birthday', date: '2022-04-18' },
 					]}
-				/>
+				/> */}
 			</div>
 		</>
 	);

@@ -1,8 +1,12 @@
+body {
+  background-color: #000210;
+}
+
 #navbar {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-color: rgb(6, 0, 27);
+ 
 }
 
 .navbar-right {
@@ -16,6 +20,7 @@
 
 .logo {
   width: 100px;
+  margin-left: 20px;
 }
 
 .a {
