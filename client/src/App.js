@@ -6,6 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClic
 import Navbar from './Navbar';
 import UpperBody from './UpperBody';
 import MiddleBody from './MiddleBody';
+import Footer from './Footer';
 
 /* --- CAN ACCESS SOME FORMATTING DIRECTLY FROM FULLCALENDAR INSTEAD OF INSTALLING OTHER PACKAGES --- */
 /*
@@ -59,6 +60,7 @@ function App() {
 			<Navbar />
 			<UpperBody />
 			<MiddleBody />
+			<Footer />
 			<div className='calendar'>
 				{/* <FullCalendar
 					plugins={[dayGridPlugin, interactionPlugin]}

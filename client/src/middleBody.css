@@ -1,7 +1,25 @@
 #middle-body {
-  background-color: #000210;
+  background: radial-gradient(circle, rgba(9,27,120,1) 0%, rgba(25,34,105,1) 0%, rgba(0,0,0,1) 63%);
+  display: flex;
+  justify-content: center;
+  height: 400px;
 }
 
-.hello {
+/* .carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.slide {
+  width: 800px;
+}
+
+.middle-body-div {
+  width: 70%;
+}
+
+.middle-body-h3, .middle-body-p{
   color: white;
+  font-family: 'Akshar', sans-serif;
 }

@@ -20,7 +20,7 @@ export default function Navbar() {
 					</Link>
 				</div>
 				<div>
-					<Link to='' className='navbar-right-link'>
+					<Link to='/about' className='navbar-right-link'>
 						<p>about</p>
 					</Link>
 				</div>
