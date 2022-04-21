@@ -2,6 +2,10 @@ body {
   background-color: #000210;
 }
 
+.disable {
+  pointer-events: none;
+}
+
 #navbar {
   display: flex;
   justify-content: space-between;

@@ -3,6 +3,7 @@ import './upperBody.css';
 import { Link } from 'react-router-dom';
 
 export default function UpperBody() {
+	
 	return (
 		<section id='upper-body'>
 			<div className='upper-body-text-div'>
@@ -13,7 +14,7 @@ export default function UpperBody() {
 					Beginners, Amateurs, Professional. Follow your own pace, pick an
 					instructor that suits you best.
 				</p>
-				<Link to='/getstarted'>
+				<Link to='/getstarted'> 
 					<button className='upper-body-btn'>Get started</button>
 				</Link>
 			</div>
