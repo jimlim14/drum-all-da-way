@@ -8,22 +8,24 @@ export default function Navbar() {
 	return (
 		<section id='navbar'>
 			<div className='navbar-left'>
-				<img src={logo} className='logo' alt='asdf' />
+				<Link to='/'>
+					<img src={logo} className='logo' alt='asdf' />
+				</Link>
 			</div>
 
 			<div className='navbar-right'>
 				<div>
-					<Link to='' className='a'>
+					<Link to='/instructors' className='navbar-right-link'>
 						<p>Instructors</p>
 					</Link>
 				</div>
 				<div>
-					<Link to='' className='a'>
+					<Link to='' className='navbar-right-link'>
 						<p>about</p>
 					</Link>
 				</div>
 				<div>
-					<Link to='' className='a'>
+					<Link to='' className='navbar-right-link'>
 						<p>events</p>
 					</Link>
 				</div>

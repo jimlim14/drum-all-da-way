@@ -6,7 +6,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 20px;
- 
+  overflow: hidden;
 }
 
 .navbar-right {
@@ -23,9 +23,13 @@ body {
   margin-left: 20px;
 }
 
-.a {
+.navbar-right-link {
   color: white;
   font-size: 30px;
   font-family: 'Akshar', sans-serif;
   text-decoration: none;
+}
+
+.navbar-right-link:hover {
+  color: #0b76db;
 }
