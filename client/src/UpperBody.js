@@ -1,8 +1,13 @@
 import React from 'react';
 import './upperBody.css';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 export default function UpperBody() {
+	function handleGetStarted () {
+		return document
+			.getElementById('footer')
+			.scrollIntoView({ behavior: 'smooth', block: 'center' });
+	}
 	
 	return (
 		<section id='upper-body'>
@@ -14,9 +19,9 @@ export default function UpperBody() {
 					Beginners, Amateurs, Professional. Follow your own pace, pick an
 					instructor that suits you best.
 				</p>
-				<Link to='/getstarted'> 
-					<button className='upper-body-btn'>Get started</button>
-				</Link>
+				{/* <Link to='/getstarted'>  */}
+					<button className='upper-body-btn' onClick={handleGetStarted}>Get started</button>
+				{/* </Link> */}
 			</div>
 		</section>
 	);

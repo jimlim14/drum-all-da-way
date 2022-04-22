@@ -4,7 +4,7 @@ import logo from './images/drildrum.png';
 import './navbar.css';
 import { Link } from 'react-router-dom';
 
-export default function Navbar({css, instructors }) {
+export default function Navbar({css}) {
 	return (
 		<section id='navbar'>
 			<div className='navbar-left'>
@@ -16,8 +16,7 @@ export default function Navbar({css, instructors }) {
 			<div className='navbar-right'>
 				<div>
 					<Link
-						to='/instructors'
-						state={{from: "Navbar"}}
+						to={'/instructors'}
 						className={`navbar-right-link ${css?.disable}`}
 					>
 						<p>Instructors</p>
@@ -25,12 +24,12 @@ export default function Navbar({css, instructors }) {
 				</div>
 				<div>
 					<Link to='/about' className={`navbar-right-link ${css?.disable}`}>
-						<p>about</p>
+						<p>About</p>
 					</Link>
 				</div>
 				<div>
-					<Link to='' className={`navbar-right-link ${css?.disable}`}>
-						<p>events</p>
+					<Link to='/book' className={`navbar-right-link ${css?.disable}`}>
+						<p>Book</p>
 					</Link>
 				</div>
 			</div>

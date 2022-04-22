@@ -1,6 +1,7 @@
 #footer {
   display: flex;
   width: 60vw;
+  height: 600px;
   justify-content: space-around;
   align-items: center;
   margin: 20px auto;
@@ -27,8 +28,12 @@
   margin-top: 15px;
 }
 
+.footer-div-1 {
+  margin-top: 10px;
+}
+
 .footer-beginner-img {
-  width: 280px;
+  width: 240px;
   margin-bottom: 20px;
 }
 
