@@ -10,7 +10,6 @@ import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClic
 import { v4 as uuidv4 } from 'uuid'; // to create unique id for every appointment made.
 
 export default function Book() {
-	//const [appointmentId, setAppointmentId] = useState(1);
 	let selectable = false; // false so that date cannot be selected without typing in name and choosing instructor
 	const date = new Date();
 	date.setDate(date.getDate() + 1);
@@ -40,8 +39,6 @@ export default function Book() {
 
 	/* do something when a date is selected */
 	function handleDateSelect(selectInfo) {
-		console.log('handleDateSelect clicked');
-		//console.log(selectInfo.view.calendar.getCurrentData());
 		const title = `${appointment.name} - ${appointment.instructor}`;
 		const calendarApi = selectInfo.view.calendar;
 		calendarApi.unselect();
@@ -55,9 +52,6 @@ export default function Book() {
 				allDay: selectInfo.allDay,
 			});
 		}
-		// setAppointmentId(prev => {
-		// 	return prev++;
-		// })
 	}
 
 	function handleDateClick(arg) {
@@ -76,7 +70,7 @@ export default function Book() {
 		console.log(clickInfo.event.id);
 		//appointments.forEach(appointment => console.log(appointment.id));
 		appointments.forEach((appointment) => {
-			if (clickInfo.event._instance.defId === appointment.id) {
+			if (clickInfo.event.id === appointment.id) {
 				fetch('http://127.0.0.1:3001/appointments', {
 					method: 'DELETE',
 					headers: {
@@ -105,7 +99,7 @@ export default function Book() {
 
 	/* access info about the added event */
 	function eventAdd(info) {
-		//info.event.id = 
+		//info.event.id =
 		console.log(info.event.id);
 		console.log('event add: ', info);
 		setAppointment((prev) => {
@@ -119,7 +113,6 @@ export default function Book() {
 	/* do something after user click button to do onSubmit on the form */
 	function handleSubmit(e) {
 		e.preventDefault();
-
 		if (appointment.start) {
 			fetch('http://127.0.0.1:3001/appointments', {
 				method: 'POST',
@@ -142,7 +135,6 @@ export default function Book() {
 				instructor: '',
 			});
 		}
-		//console.log(appointments);
 	}
 
 	function handleChange(e) {
@@ -171,29 +163,27 @@ export default function Book() {
 	function myAppointment() {
 		const arr = appointments.map((appointment) => {
 			return {
-				//id: `${appointment.id}`,
+				id: appointment.id,
 				title: `${appointment.name} - ${appointment.instructor}`,
 				start: appointment.start,
 				backgroundColor: '#FFFFFF',
 				textColor: '#000000',
 			};
 		});
-		//console.log(arr);
 		return arr;
 	}
 
 	if (appointment.name && appointment.instructor) {
 		selectable = true;
 	}
-	// console.log(appointment);
-	//console.log(appointments);
+
 	return !instructors.length ? (
 		<h1>Loading...</h1>
 	) : (
 		<section id='book'>
 			<Navbar />
 			<div className='full-calendar'>
-				<form onSubmit={handleSubmit}>
+				<form className='form-div' onSubmit={handleSubmit}>
 					<input
 						type='text'
 						placeholder='Input your name'
@@ -210,7 +200,7 @@ export default function Book() {
 					<button className={selectable ? 'visible' : 'invisible'}>Book</button>
 				</form>
 				{appointment.name && appointment.instructor ? (
-					<h1>Select your date by simply clicking it.</h1>
+					<h1 className='message'>Select your date by simply clicking it.</h1>
 				) : (
 					<></>
 				)}
@@ -240,15 +230,15 @@ export default function Book() {
 					editable={true}
 					selectable={selectable} // make it so that you can 'select' it and change color
 					select={handleDateSelect}
-					eventClick={handleEventClick} 
+					eventClick={handleEventClick}
 					eventAdd={(info) => eventAdd(info)} // before i press book, this cb will be triggered
-					// eventBackgroundColor={'#FFFFFF'} // change event color, this is red
+					// eventBackgroundColor={'#F'} // change event color
 					// eventBorderColor={'#0b76db'}
 					// eventTextColor={'#000000'}
 					dateClick={selectable ? handleDateClick : ''} // i initially installed on root directory, i then installed inside 'cd src' and it worked now.
 					events={
 						appointment.instructor
-							? [...events(appointment.instructor), [...myAppointment()]]
+							? [...events(appointment.instructor), [myAppointment()]]
 							: myAppointment()
 						// ? new Map ([...events(appointment.instructor), [...myAppointment()]])
 						// : new Map ([...myAppointment()])
