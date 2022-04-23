@@ -1,10 +1,11 @@
-#book {
+/* #book {
   background-color: white;
-}
+} */
 
 .full-calendar {
   width: 80%;
   margin: auto;
+  background-color: white;
 }
 
 .visible {

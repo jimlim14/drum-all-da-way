@@ -32,9 +32,7 @@ function App() {
 			<MiddleBody />
 			<Footer />
 
-			<div className='calendar'>
-				
-			</div>
+			<div className='calendar'></div>
 		</section>
 	);
 }

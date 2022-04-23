@@ -1,0 +1,47 @@
+.instructor {
+  display: flex;
+  margin: 50px 10px;
+  border: 2px solid #0b76db;
+  border-radius: 20px;
+}
+
+.instructor-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  align-self: center;
+  margin-left: 40px;
+  margin-right: 40px;
+  box-shadow: 1px 1px 57px -14px rgba(255,255,255,0.75);
+
+}
+
+.instructor-header {
+  display: flex;
+  margin-top: 10px;
+}
+
+.instructor-quote {
+  align-self: center;
+  font-family: 'Anek Gujarati', sans-serif;
+  font-weight: 300;
+  width: 75%;
+  color: white;
+}
+
+.instructor-name {
+  font-family: 'Akshar', sans-serif;
+  width: 25%;
+  color: white;
+}
+
+.instructor-experience {
+  font-family: 'Anek Gujarati', sans-serif;
+  color: white;
+}
+
+.instructor-description {
+  font-family: 'Anek Gujarati', sans-serif;
+  color: gray;
+  font-size: 20px;
+}
