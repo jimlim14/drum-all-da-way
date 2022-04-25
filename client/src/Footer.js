@@ -58,7 +58,7 @@ export default function Footer() {
 					<div className='footer-text-div'>
 						<h3 className='footer-h3'>Learn more</h3>
 						<p className='footer-p'>
-							Ever feel like you haven&apost made progress for some time by
+							Ever feel like you haven&apost; made progress for some time by
 							playing as an Amateur? Do not be afraid, book one of our
 							instructors to get you back on your feet.
 						</p>

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import './book.css';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -74,15 +77,15 @@ export default function Book() {
 
 	/* do something when event is clicked */
 	function handleEventClick(clickInfo) {
-			setToggle(true);
-			setRemoveEvent(clickInfo);
-	
-			const { id, title, startStr } = clickInfo.event;
-			setTemporary({
-				title: title,
-				start: startStr,
-				id: id,
-			});
+		setToggle(true);
+		setRemoveEvent(clickInfo);
+
+		const { id, title, startStr } = clickInfo.event;
+		setTemporary({
+			title: title,
+			start: startStr,
+			id: id,
+		});
 	}
 
 	function handleDelete() {
@@ -112,7 +115,7 @@ export default function Book() {
 
 	/* do something after user click button to do onSubmit on the form */
 	function handleSubmit(e) {
-		// e.preventDefault();
+		//e.preventDefault();
 		if (appointment.start) {
 			fetch('http://127.0.0.1:3001/appointments', {
 				method: 'POST',
@@ -137,6 +140,7 @@ export default function Book() {
 		} else {
 			e.preventDefault();
 		}
+		toast('booked successfully');
 	}
 
 	function handleChange(e) {
@@ -203,19 +207,30 @@ export default function Book() {
 		<h1>Loading...</h1>
 	) : (
 		<section id='book'>
-			<Navbar className={temporary.id ? 'opacity' : ''} />
+			<Navbar />
+			<div className={toggle ? 'instructions opacity' : 'instructions'}>
+				<h2 className='first-instruction'>
+					1) Input your name in the input box:{' '}
+					<span className='inputed-name'>{appointment.name}</span>
+				</h2>
+				<h2 className='second-instruction'>
+					2) Choose your preferred instructor:{' '}
+					<span className='picked-instructor'>{appointment.instructor}</span>
+				</h2>
+			</div>
 			<div
 				className={
 					toggle ? 'full-calendar opacity unselectable' : 'full-calendar'
 				}
 			>
-				<form className='form-div' onSubmit={handleSubmit}>
+				<form className='form-div'>
 					<input
 						type='text'
 						placeholder='Input your name'
 						onChange={handleChange}
 						name='name'
 						value={appointments.name}
+						autoComplete='off'
 					/>
 					<select onChange={handleChange} name='instructor'>
 						<option value=''>-- select instructors --</option>
@@ -225,12 +240,30 @@ export default function Book() {
 							</option>
 						))}
 					</select>
-					<button className={selectable ? 'visible' : 'invisible'}>Book</button>
+					<button
+						className={appointment.id ? 'visible' : 'invisible'}
+						onClick={handleSubmit}
+					>
+						Book
+					</button>
+					<ToastContainer
+						position='top-center'
+						autoClose={3000}
+						hideProgressBar={false}
+						newestOnTop={false}
+						closeOnClick
+						rtl={false}
+						pauseOnFocusLoss
+						draggable
+						pauseOnHover
+					/>
 				</form>
-				{appointment.name && appointment.instructor ? (
-					<h1 className='message'>Select your date by simply clicking it.</h1>
-				) : (
-					<></>
+				{appointment.name && appointment.instructor && (
+					<div className='message-div'>
+						<h1 className='message'>
+							Select your date and time by simply clicking on the calendar.
+						</h1>
+					</div>
 				)}
 				<FullCalendar
 					plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
@@ -261,8 +294,8 @@ export default function Book() {
 					select={handleDateSelect}
 					eventClick={handleEventClick}
 					eventAdd={eventAdd} // before i press book, this cb will be triggered
-					// eventBackgroundColor={'#F'} // change event color
-					// eventBorderColor={'#0b76db'}
+					eventBackgroundColor={'#0b76db'} // change event color
+					// eventBorderColor={''}
 					// eventTextColor={'#000000'}
 					dateClick={selectable ? handleDateClick : ''} // i initially installed on root directory, i then installed inside 'cd src' and it worked now.
 					events={
