@@ -267,12 +267,13 @@ export default function Book() {
 					dateClick={selectable ? handleDateClick : ''} // i initially installed on root directory, i then installed inside 'cd src' and it worked now.
 					events={
 						appointment.instructor
-							? [...events(appointment.instructor), [...myAppointment()]]
+							? [...events(appointment.instructor), ...myAppointment()]
 							: myAppointment()
 						// ? new Map ([...events(appointment.instructor), [...myAppointment()]])
 						// : new Map ([...myAppointment()])
 					}
 				/>
+				{console.log('my appointments: ', myAppointment())}
 			</div>
 			<div className={toggle ? 'click-path' : 'invisible'}>
 				<h1 className='click-path-message'>
@@ -281,7 +282,7 @@ export default function Book() {
 				{temporary.id ? (
 					<p className='delete-details'>
 						{temporary.title} on {temporary.start.slice(0, 10)} at{' '}
-						{new Date(temporary.start).getHours()}:00 o&aposclock
+						{new Date(temporary.start).getHours()}:00 o&apos;clock
 					</p>
 				) : (
 					<></>

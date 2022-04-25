@@ -15,7 +15,7 @@ export default function Instructor({
 			<div className='instructor-details'>
 				<div className='instructor-header'>
 					<h1 className='instructor-name'>{name} </h1>
-					<h3 className='instructor-quote'>&quot{quote}&quot</h3>
+					<h3 className='instructor-quote'>&quot;{quote}&quot;</h3>
 				</div>
 				<div>
 					<h2 className='instructor-experience'>
