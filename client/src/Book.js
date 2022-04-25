@@ -74,17 +74,15 @@ export default function Book() {
 
 	/* do something when event is clicked */
 	function handleEventClick(clickInfo) {
-		setToggle(true);
-		setRemoveEvent(clickInfo);
-
-		const { id, title, startStr } = clickInfo.event;
-		setTemporary({
-			// name: title.split('-')[0],
-			// instructor: title.split('-')[1],
-			title: title,
-			start: startStr,
-			id: id,
-		});
+			setToggle(true);
+			setRemoveEvent(clickInfo);
+	
+			const { id, title, startStr } = clickInfo.event;
+			setTemporary({
+				title: title,
+				start: startStr,
+				id: id,
+			});
 	}
 
 	function handleDelete() {
@@ -136,6 +134,8 @@ export default function Book() {
 				start: '',
 				instructor: '',
 			});
+		} else {
+			e.preventDefault();
 		}
 	}
 
@@ -203,7 +203,7 @@ export default function Book() {
 		<h1>Loading...</h1>
 	) : (
 		<section id='book'>
-			<Navbar className={temporary.id ? 'unselectable opacity' : ''} />
+			<Navbar className={temporary.id ? 'opacity' : ''} />
 			<div
 				className={
 					toggle ? 'full-calendar opacity unselectable' : 'full-calendar'
@@ -269,8 +269,6 @@ export default function Book() {
 						appointment.instructor
 							? [...events(appointment.instructor), ...myAppointment()]
 							: myAppointment()
-						// ? new Map ([...events(appointment.instructor), [...myAppointment()]])
-						// : new Map ([...myAppointment()])
 					}
 				/>
 				{console.log('my appointments: ', myAppointment())}
