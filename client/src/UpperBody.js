@@ -20,7 +20,9 @@ export default function UpperBody() {
 					instructor that suits you best.
 				</p>
 				{/* <Link to='/getstarted'>  */}
-					<button className='upper-body-btn' onClick={handleGetStarted}>Get started</button>
+				<button className='upper-body-btn' onClick={handleGetStarted}>
+					Get started
+				</button>
 				{/* </Link> */}
 			</div>
 		</section>

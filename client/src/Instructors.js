@@ -5,17 +5,14 @@ import Instructor from './Instructor';
 import './instructors.css';
 
 import jaredFalk from './images/jared-falk.jpeg';
-import robBourdon from './images/rob-bourdon.webp'
+import robBourdon from './images/rob-bourdon.webp';
 import treCool from './images/tre-cool.jpg';
 import tonyRoysterJr from './images/toy-royster-jr.jpg';
-import chadSmith from './images/chad-smith.jpeg'
+import chadSmith from './images/chad-smith.jpeg';
 
 export default function Instructors() {
 	const [instructors, setInstructors] = useState([]);
-
-	const images = [
-		jaredFalk, robBourdon, treCool, tonyRoysterJr, chadSmith
-	]
+	const images = [jaredFalk, robBourdon, treCool, tonyRoysterJr, chadSmith];
 
 	useEffect(() => {
 		fetch('http://127.0.0.1:3001/instructors')
@@ -25,7 +22,9 @@ export default function Instructors() {
 			});
 	}, []);
 
-	return (
+	return !instructors.length ? (
+		<></>
+	) : (
 		<>
 			<Navbar />
 			<section id='instructors'>
@@ -37,8 +36,7 @@ export default function Instructors() {
 						experience={instructor.experience}
 						description={instructor.description}
 						quote={instructor.quote}
-						cost={instructor.cost}
-						category={instructor.category}
+						categories={instructor.category}
 					/>
 				))}
 			</section>

@@ -1,22 +1,31 @@
+.unselectable {
+	pointer-events: none;
+}
+
 .full-calendar {
-  width: 80%;
-  margin: auto;
-  background-color: white;
+	width: 80%;
+	margin: auto;
+	background-color: white;
+}
+
+.opacity {
+	opacity: 0.2;
 }
 
 .form-div {
-  display: flex;
-  justify-content: space-around;
-  width: 30%;
-  margin: auto;
+	display: flex;
+	justify-content: space-around;
+	width: 30%;
+	margin: auto;
 }
 
 .message {
-  font-family: 'Anek Gujarati', sans-serif;
-  font-size: 30px;
+	font-family: 'Anek Gujarati', sans-serif;
+	font-size: 30px;
+	text-align: center;
 }
 
-.visible {
+/* .visible {
   display: inline-block;
   border: none;
   border-radius: 5px;
@@ -26,8 +35,64 @@
   background-color: #0b76db;
   color: white;
   font-size: 20px;
-}
+} */
 
 .invisible {
-  display: none;
+	display: none;
+}
+
+.click-path {
+	width: 600px;
+	height: 300px;
+	clip-path: polygon(10% 10%, 90% 10%, 90% 90%, 10% 90%);
+	background-color: black;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+}
+
+.click-path-message {
+	width: 300px;
+	text-align: center;
+	margin: 50px auto 0 auto;
+	align-self: center;
+	font-family: 'Akshar', sans-serif;
+	color: #0b76db;
+}
+
+.delete-btn {
+	border: 2px solid #0b76db;
+	border-radius: 10px;
+	background-color: black;
+	color: #0b76db;
+	width: 100px;
+	margin: 20px auto;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+.delete-btn:hover {
+	color: black;
+	background-color: #0b76db;
+}
+
+.cancel-btn {
+	position: absolute;
+	right: 80px;
+	top: 45px;
+	background-color: black;
+	border-radius: 5px;
+	border: 2px solid #0b76db;
+	color: #0b76db;
+	cursor: pointer;
+}
+
+.delete-details {
+	text-align: center;
+	color: gray;
+	font-size: 20px;
+	font-family: 'Anek Gujarati', sans-serif;
 }

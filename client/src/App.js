@@ -9,28 +9,40 @@ import Footer from './Footer';
 
 function App() {
 	/* set homepage opacity to 0.2 */
-	// const [css, setCss] = React.useState({
-	// 	opacity: '',
-	// 	disable: ''
-	// });
+	const [css, setCss] = React.useState({
+		app: '',
+		instructor: '',
+	});
 
 	/* change opacity function passing down to child */
-	// function changeOpacity () {
-	// 	setCss(prev => {
-	// 		return {
-	// 			...prev,
-	// 			opacity: 'opacity',
-	// 			disable: 'disable'
-	// 		}
-	// 	});
-	// }
+	function changeOpacity() {
+		setCss((prev) => {
+			return {
+				...prev,
+				app: 'app',
+			};
+		});
+	}
+
+	function changeInstructor(instructorCategory) {
+		setCss((prev) => {
+			return {
+				...prev,
+				instructor: instructorCategory,
+			};
+		});
+	}
 
 	return (
-		<section>
+		<section id={css.app.length ? css.app : ''}>
 			<Navbar />
 			<UpperBody />
 			<MiddleBody />
-			<Footer />
+			<Footer
+				css={css}
+				changeOpacity={changeOpacity}
+				changeInstructor={changeInstructor}
+			/>
 
 			<div className='calendar'></div>
 		</section>

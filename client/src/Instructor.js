@@ -7,8 +7,7 @@ export default function Instructor({
 	experience,
 	description,
 	quote,
-	cost,
-	category,
+	categories,
 }) {
 	return (
 		<div className='instructor'>
@@ -16,11 +15,18 @@ export default function Instructor({
 			<div className='instructor-details'>
 				<div className='instructor-header'>
 					<h1 className='instructor-name'>{name} </h1>
-					<h3 className='instructor-quote'>"{quote}"</h3>
+					<h3 className='instructor-quote'>&quot{quote}&quot</h3>
 				</div>
-				<h2 className='instructor-experience'>
-					teaching experience: {experience}
-				</h2>
+				<div>
+					<h2 className='instructor-experience'>
+						teaching experience: {experience}
+					</h2>
+					<p className='category-p'>
+						{categories.map((category) => {
+							return category + '  ';
+						})}
+					</p>
+				</div>
 				<p className='instructor-description'>{description}</p>
 			</div>
 		</div>
