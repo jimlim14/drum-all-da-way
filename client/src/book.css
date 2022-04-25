@@ -63,6 +63,7 @@
 	display: none;
 }
 
+/* clip-path not doing anything, fix it! */
 .click-path {
 	width: 600px;
 	height: 300px;
