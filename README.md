@@ -38,3 +38,6 @@ npm start
 * [Canva](https://www.canva.com/) - Logo design and video editing tools.
 * [Fontawesom](https://fontawesome.com/) - Icon library and toolkit.
 
+## Demo
+
+* [Demo link](https://www.youtube.com/watch?v=_I3JO3u_2kY) - My solo project demo posted on youtube :)
