@@ -1,6 +1,5 @@
 import React from 'react';
 import './upperBody.css';
-//import { Link } from 'react-router-dom';
 
 export default function UpperBody() {
   function handleGetStarted() {
@@ -20,11 +19,9 @@ export default function UpperBody() {
             Beginners, Amateurs, Professional. Follow your own pace, pick an
             instructor that suits you best.
           </p>
-          {/* <Link to='/getstarted'>  */}
           <button className='upper-body-btn' onClick={handleGetStarted}>
             Get started
           </button>
-          {/* </Link> */}
         </div>
       </section>
     </>

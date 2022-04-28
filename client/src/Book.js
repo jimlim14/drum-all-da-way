@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 import './book.css';
 
 import { ToastContainer, toast } from 'react-toastify';
-//import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
@@ -70,7 +70,6 @@ export default function Book() {
   }
 
   function handleDateClick(arg) {
-    console.log('handleDateClick clicked');
     const date = new Date(arg.dateStr);
     setAppointment((prev) => ({
       ...prev,
@@ -81,17 +80,16 @@ export default function Book() {
 
   /* do something when event is clicked */
   function handleEventClick(clickInfo) {
-		if (appointment.id) {
-			setToggle(true);
-			setRemoveEvent(clickInfo);
-			const { id, title, startStr } = clickInfo.event;
-			setTemporary({
-				title: title,
-				start: startStr,
-				id: id,
-			});
-		}
-
+    if (clickInfo.event.id) {
+      setToggle(true);
+      setRemoveEvent(clickInfo);
+      const { id, title, startStr } = clickInfo.event;
+      setTemporary({
+        title: title,
+        start: startStr,
+        id: id,
+      });
+    }
   }
 
   function handleDelete() {
@@ -297,16 +295,14 @@ export default function Book() {
               endTime: '20:00',
             },
           ]}
-          height={650}
-          dayMaxEvents={true}
-          editable={true}
+          height={450}
+          //dayMaxEvents={true}
+          //editable={true} // make it draggable
           selectable={selectable} // make it so that you can 'select' it and change color
           select={handleDateSelect}
           eventClick={handleEventClick}
           eventAdd={eventAdd} // before i press book, this cb will be triggered
           eventBackgroundColor={'#0b76db'} // change event color
-          // eventBorderColor={''}
-          // eventTextColor={'#000000'}
           dateClick={selectable ? handleDateClick : ''} // i initially installed on root directory, i then installed inside 'cd src' and it worked now.
           events={
             appointment.instructor

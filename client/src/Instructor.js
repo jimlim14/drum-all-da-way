@@ -32,12 +32,3 @@ export default function Instructor({
     </div>
   );
 }
-
-// Instructor.propTypes = {
-// 	image: PropTypes.string.isRequired,
-// 	name: PropTypes.string.isRequired,
-// 	experience: PropTypes.string.isRequired,
-// 	description: PropTypes.string.isRequired,
-// 	quote: PropTypes.string.isRequired,
-// 	categories: PropTypes.string.isRequired,
-// };

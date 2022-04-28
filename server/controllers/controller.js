@@ -57,7 +57,6 @@ const getAppointments = async (req, res) => {
 const postAppointment = async (req, res) => {
 	try {
 		res.status(201);
-		console.log(req.body);
 		const { name, start, instructor, id } = req.body;
 		const appointment = await new Appointment({ name, start, instructor, id });
 		appointment.save();
