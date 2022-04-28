@@ -5,6 +5,6 @@ DrilDrum is a booking platform where drum lovers can visit, pick a preferred ins
 ## Screenshot
 
 <p align="center">
-  <img src="images/screenshot-about.png" />
+  <img src="client/src/images/screenshot-about.png" />
 </p>
  
