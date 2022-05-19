@@ -1,13 +1,9 @@
 import React from 'react';
 import './upperBody.css';
 
-export default function UpperBody() {
-  function handleGetStarted() {
-    return document
-      .getElementById('footer')
-      .scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+import { handleGetStarted } from './helper';
 
+export default function UpperBody() {
   return (
     <>
       <section id='upper-body'>
