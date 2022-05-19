@@ -11,7 +11,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
 
 import { v4 as uuidv4 } from 'uuid'; // to create unique id for every appointment made.
-import { handleDateSelect } from './helper';
+import { handleDateSelect, handleEventClick, myAppointment, events } from './helper';
 
 export default function Book() {
   let selectable = false; // false so that date cannot be selected without typing in name and choosing instructor
@@ -49,27 +49,6 @@ export default function Book() {
       });
   }, []);
 
-  // /* do something when a date is selected */
-  // function handleDateSelect(selectInfo, uuidv4) {
-  //   const title = `${appointment.name} - ${appointment.instructor}`;
-  //   const calendarApi = selectInfo.view.calendar;
-  //   calendarApi.unselect();
-
-  //   if (lastEvent) {
-  //     lastEvent.remove();
-  //   }
-  //   if (appointment.name && appointment.instructor) {
-  //     const event = calendarApi.addEvent({
-  //       id: uuidv4(),
-  //       title: title,
-  //       start: selectInfo.startStr,
-  //       end: selectInfo.endStr,
-  //       allDay: selectInfo.allDay,
-  //     });
-  //     setLastEvent(event);
-  //   }
-  // }
-
   function handleDateClick(arg) {
     const date = new Date(arg.dateStr);
     setAppointment((prev) => ({
@@ -77,20 +56,6 @@ export default function Book() {
       start: date,
     }));
     selectable = false;
-  }
-
-  /* do something when event is clicked */
-  function handleEventClick(clickInfo) {
-    if (clickInfo.event.id) {
-      setToggle(true);
-      setRemoveEvent(clickInfo);
-      const { id, title, startStr } = clickInfo.event;
-      setTemporary({
-        title: title,
-        start: startStr,
-        id: id,
-      });
-    }
   }
 
   function handleDelete() {
@@ -116,6 +81,22 @@ export default function Book() {
         id: info.event.id,
       };
     });
+  }
+
+  function removeFunc(clickInfo) {
+    for (let appointment of appointments) {
+      if (clickInfo.event.id === appointment.id) {
+        return fetch('http://127.0.0.1:3001/appointments', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(appointment),
+        })
+          .then((res) => res.json())
+          .then((deletedAppointment) => deletedAppointment);
+      }
+    }
   }
 
   /* do something after user click button to do onSubmit on the form */
@@ -158,50 +139,6 @@ export default function Book() {
       ...prev,
       [name]: value,
     }));
-  }
-
-  /* show instructors' appointments */
-  function events(instructorName) {
-    const selectedInstructor = instructors.filter(
-      (instructor) => instructor.name === instructorName
-    );
-    const arr = selectedInstructor[0].appointment.map((appointment) => {
-      return {
-        title: `${appointment.name} - ${appointment.instructor}`,
-        start: appointment.start,
-      };
-    });
-    return arr;
-  }
-
-  /* show my appointments */
-  function myAppointment() {
-    const arr = appointments.map((appointment) => {
-      return {
-        id: appointment.id,
-        title: `${appointment.name} - ${appointment.instructor}`,
-        start: appointment.start,
-        backgroundColor: '#FFFFFF',
-        textColor: '#000000',
-      };
-    });
-    return arr;
-  }
-
-  function removeFunc(clickInfo) {
-    for (let appointment of appointments) {
-      if (clickInfo.event.id === appointment.id) {
-        return fetch('http://127.0.0.1:3001/appointments', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(appointment),
-        })
-          .then((res) => res.json())
-          .then((deletedAppointment) => deletedAppointment);
-      }
-    }
   }
 
   function cancelFunc() {
@@ -300,18 +237,27 @@ export default function Book() {
           //dayMaxEvents={true}
           //editable={true} // make it draggable
           selectable={selectable} // make it so that you can 'select' it and change color
-          select={(selectInfo) => handleDateSelect(selectInfo, uuidv4, appointment, lastEvent, setLastEvent)}
-          eventClick={handleEventClick}
+          select={(selectInfo) =>
+            handleDateSelect(
+              selectInfo,
+              uuidv4,
+              appointment,
+              lastEvent,
+              setLastEvent
+            )
+          }
+          eventClick={(clickInfo) =>
+            handleEventClick(clickInfo, setToggle, setRemoveEvent, setTemporary)
+          }
           eventAdd={eventAdd} // before i press book, this cb will be triggered
           eventBackgroundColor={'#0b76db'} // change event color
           dateClick={selectable ? handleDateClick : ''} // i initially installed on root directory, i then installed inside 'cd src' and it worked now.
           events={
             appointment.instructor
-              ? [...events(appointment.instructor), ...myAppointment()]
-              : myAppointment()
+              ? [...events(appointment.instructor, instructors), ...myAppointment(appointments)]
+              : myAppointment(appointments)
           }
         />
-        {console.log('my appointments: ', myAppointment())}
       </div>
       <div className={toggle ? 'click-path' : 'invisible'}>
         <h1 className='click-path-message'>
