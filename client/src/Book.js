@@ -11,6 +11,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
 
 import { v4 as uuidv4 } from 'uuid'; // to create unique id for every appointment made.
+import { handleDateSelect } from './helper';
 
 export default function Book() {
   let selectable = false; // false so that date cannot be selected without typing in name and choosing instructor
@@ -48,26 +49,26 @@ export default function Book() {
       });
   }, []);
 
-  /* do something when a date is selected */
-  function handleDateSelect(selectInfo) {
-    const title = `${appointment.name} - ${appointment.instructor}`;
-    const calendarApi = selectInfo.view.calendar;
-    calendarApi.unselect();
+  // /* do something when a date is selected */
+  // function handleDateSelect(selectInfo, uuidv4) {
+  //   const title = `${appointment.name} - ${appointment.instructor}`;
+  //   const calendarApi = selectInfo.view.calendar;
+  //   calendarApi.unselect();
 
-    if (lastEvent) {
-      lastEvent.remove();
-    }
-    if (appointment.name && appointment.instructor) {
-      const event = calendarApi.addEvent({
-        id: uuidv4(),
-        title: title,
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: selectInfo.allDay,
-      });
-      setLastEvent(event);
-    }
-  }
+  //   if (lastEvent) {
+  //     lastEvent.remove();
+  //   }
+  //   if (appointment.name && appointment.instructor) {
+  //     const event = calendarApi.addEvent({
+  //       id: uuidv4(),
+  //       title: title,
+  //       start: selectInfo.startStr,
+  //       end: selectInfo.endStr,
+  //       allDay: selectInfo.allDay,
+  //     });
+  //     setLastEvent(event);
+  //   }
+  // }
 
   function handleDateClick(arg) {
     const date = new Date(arg.dateStr);
@@ -299,7 +300,7 @@ export default function Book() {
           //dayMaxEvents={true}
           //editable={true} // make it draggable
           selectable={selectable} // make it so that you can 'select' it and change color
-          select={handleDateSelect}
+          select={(selectInfo) => handleDateSelect(selectInfo, uuidv4, appointment, lastEvent, setLastEvent)}
           eventClick={handleEventClick}
           eventAdd={eventAdd} // before i press book, this cb will be triggered
           eventBackgroundColor={'#0b76db'} // change event color
