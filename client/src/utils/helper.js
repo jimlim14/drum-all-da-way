@@ -44,6 +44,37 @@ function handleEventClick(clickInfo, setToggle, setRemoveEvent, setTemporary) {
   }
 }
 
+function handleDelete(setToggle, removeEvent, setAppointments, appointments) {
+  setToggle(false);
+  removeFunc(removeEvent, appointments)
+    .then((deletedAppointment) => {
+      console.log('deleted');
+      setAppointments((prevAppointment) => {
+        const filteredAppointments = prevAppointment.filter((appointment) => {
+          return appointment.id !== deletedAppointment.id;
+        });
+        return [...filteredAppointments];
+      });
+    })
+    .catch((err) => console.log(err));
+}
+
+function removeFunc(clickInfo, appointments) {
+  for (let appointment of appointments) {
+    if (clickInfo.event.id === appointment.id) {
+      return fetch('http://127.0.0.1:3001/appointments', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(appointment),
+      })
+        .then((res) => res.json())
+        .then((deletedAppointment) => deletedAppointment);
+    }
+  }
+}
+
 /* show my appointments */
 function myAppointment(appointments) {
   const arr = appointments.map((appointment) => {
@@ -77,5 +108,6 @@ module.exports = {
   handleDateSelect,
   handleEventClick,
   myAppointment,
-  events
+  events,
+  handleDelete
 };

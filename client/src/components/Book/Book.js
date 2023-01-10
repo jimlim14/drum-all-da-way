@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
+import Navbar from '../Navbar/Navbar';
 import './book.css';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,9 +11,17 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
 
 import { v4 as uuidv4 } from 'uuid'; // to create unique id for every appointment made.
-import { handleDateSelect, handleEventClick, myAppointment, events } from './helper';
+import {
+  handleDateSelect,
+  handleEventClick,
+  myAppointment,
+  events,
+  handleDelete
+} from '../../utils/helper';
 
 export default function Book() {
+  const serverUrl = 'http://127.0.0.1:3001';
+
   let selectable = false; // false so that date cannot be selected without typing in name and choosing instructor
 
   /* use to set fullcalendar initial selectable date */
@@ -37,12 +45,12 @@ export default function Book() {
   const [instructors, setInstructors] = useState([]);
   const [appointments, setAppointments] = useState([]); // use for fetching appointments from server
   useEffect(() => {
-    fetch('http://127.0.0.1:3001/instructors')
+    fetch(`${serverUrl}/instructors`)
       .then((res) => res.json())
       .then((instructors) => {
         setInstructors(instructors);
       });
-    fetch('http://127.0.0.1:3001/appointments')
+    fetch(`${serverUrl}/appointments`)
       .then((res) => res.json())
       .then((appointments) => {
         setAppointments(appointments);
@@ -58,21 +66,6 @@ export default function Book() {
     selectable = false;
   }
 
-  function handleDelete() {
-    setToggle(false);
-    removeFunc(removeEvent)
-      .then((deletedAppointment) => {
-        console.log('deleted');
-        setAppointments((prevAppointment) => {
-          const filteredAppointments = prevAppointment.filter((appointment) => {
-            return appointment.id !== deletedAppointment.id;
-          });
-          return [...filteredAppointments];
-        });
-      })
-      .catch((err) => console.log(err));
-  }
-
   /* access info about the added event */
   function eventAdd(info) {
     setAppointment((prev) => {
@@ -81,22 +74,6 @@ export default function Book() {
         id: info.event.id,
       };
     });
-  }
-
-  function removeFunc(clickInfo) {
-    for (let appointment of appointments) {
-      if (clickInfo.event.id === appointment.id) {
-        return fetch('http://127.0.0.1:3001/appointments', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(appointment),
-        })
-          .then((res) => res.json())
-          .then((deletedAppointment) => deletedAppointment);
-      }
-    }
   }
 
   /* do something after user click button to do onSubmit on the form */
@@ -254,7 +231,10 @@ export default function Book() {
           dateClick={selectable ? handleDateClick : ''} // i initially installed on root directory, i then installed inside 'cd src' and it worked now.
           events={
             appointment.instructor
-              ? [...events(appointment.instructor, instructors), ...myAppointment(appointments)]
+              ? [
+                  ...events(appointment.instructor, instructors),
+                  ...myAppointment(appointments),
+                ]
               : myAppointment(appointments)
           }
         />
@@ -271,7 +251,10 @@ export default function Book() {
         ) : (
           <></>
         )}
-        <button className='delete-btn' onClick={handleDelete}>
+        <button
+          className='delete-btn'
+          onClick={() => handleDelete(setToggle, removeEvent, setAppointments, appointments)}
+        >
           remove
         </button>
         <button className='cancel-btn' onClick={cancelFunc}>

@@ -3,7 +3,6 @@ const { Appointment } = require('../model/appointment-model');
 
 const getInstructors = async (req, res) => {
 	try {
-		console.log('get work');
 		res.status(200);
 		const instructors = await Instructor.find();
 		res.json(instructors);
@@ -15,7 +14,6 @@ const getInstructors = async (req, res) => {
 
 const postInstructor = async (req, res) => {
 	try {
-		console.log('post work');
 		res.status(201);
 		const {
 			name,
@@ -70,7 +68,6 @@ const postAppointment = async (req, res) => {
 const deleteAppointment = async (req, res) => {
 	try {
 		res.status(201);
-		console.log(req.body);
 		const deletedAppointment = await Appointment.findOneAndDelete({id: req.body.id});
 		res.json(deletedAppointment);
 	} catch (e) {

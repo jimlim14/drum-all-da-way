@@ -2,10 +2,10 @@ import React from 'react';
 
 import './app.css';
 
-import Navbar from './Navbar';
-import UpperBody from './UpperBody';
-import MiddleBody from './MiddleBody';
-import Footer from './Footer';
+import Navbar from './components/Navbar/Navbar';
+import UpperBody from './components/UpperBody/UpperBody';
+import MiddleBody from './components/Middle Body/MiddleBody';
+import Footer from './components/Footer/Footer';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

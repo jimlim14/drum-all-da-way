@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from './Navbar';
+import Navbar from '../Navbar/Navbar';
 import './about.css';
 
-import instagramLogo from './images/instagram.png';
-import facebookLogo from './images/facebook.png';
+import instagramLogo from '../../images/instagram.png';
+import facebookLogo from '../../images/facebook.png';
 
 export default function About() {
 	return (

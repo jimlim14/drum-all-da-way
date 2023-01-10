@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
-import Instructor from './Instructor';
+import Navbar from '../Navbar/Navbar';
+import Instructor from '../Instructor/Instructor';
 import './instructors.css';
 
-import jaredFalk from './images/jared-falk.jpeg';
-import robBourdon from './images/rob-bourdon.webp';
-import treCool from './images/tre-cool.jpg';
-import tonyRoysterJr from './images/toy-royster-jr.jpg';
-import chadSmith from './images/chad-smith.jpeg';
+import jaredFalk from '../../images/jared-falk.jpeg';
+import robBourdon from '../../images/rob-bourdon.webp';
+import treCool from '../../images/tre-cool.jpg';
+import tonyRoysterJr from '../../images/toy-royster-jr.jpg';
+import chadSmith from '../../images/chad-smith.jpeg';
 
 const images = [jaredFalk, robBourdon, treCool, tonyRoysterJr, chadSmith];
 

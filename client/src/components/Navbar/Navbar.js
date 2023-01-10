@@ -1,6 +1,5 @@
 import React from 'react';
-import './navbar.css';
-import logo from './images/drildrum.png';
+import logo from '../../images/drildrum.png';
 import './navbar.css';
 import { Link } from 'react-router-dom';
 

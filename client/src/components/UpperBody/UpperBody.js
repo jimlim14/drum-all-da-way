@@ -1,7 +1,7 @@
 import React from 'react';
 import './upperBody.css';
 
-import { handleGetStarted } from './helper';
+import { handleGetStarted } from '../../utils/helper';
 
 export default function UpperBody() {
   return (
